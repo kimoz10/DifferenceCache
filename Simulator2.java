@@ -33,7 +33,7 @@ class PageSharingThread extends Thread{
 				int ppn = p.ppn;
 				int mem_inst = p.memory_inst;
 				int newContent_idx;
-				newContent_idx = table_image1.get(ppn);
+				newContent_idx = ppn;
 				if(newContent_idx >= 262144/2) newContent_idx -= 262144/2;
 				//else
 				//	newContent_idx = table_image2.get(ppn);
@@ -104,7 +104,7 @@ class CacheThread extends Thread{
                                         //TO COMPLETE
                                         int mem_inst = p.memory_inst;//memory instance of the page
                                         int newContent_idx;//get index in filebuffer to read the new content of the page
-                                        newContent_idx = table_image1.get(ppn);
+                                        newContent_idx = ppn;
 					if(newContent_idx >= 262144/2) newContent_idx -= 262144/2;
                                         //else
                                         //        newContent_idx = table_image2.get(ppn);
@@ -298,29 +298,29 @@ public class Simulator2{
 		//Now the tracing part
 		//first creating a mapping between (pagenumber, memory instance) to an index inside sample.txt
 		//now since we are dumping the whole memory, the index is the page number
-		File f1 = new File("/home/karim/qemu/image3/page_monitor.txt");
+		//File f1 = new File("/home/karim/qemu/image3/page_monitor.txt");
     		//File f2 = new File("/home/karim/qemu/image2/page_monitor.txt");
-		BufferedReader in_image1 = new BufferedReader(new FileReader(f1));
+		//BufferedReader in_image1 = new BufferedReader(new FileReader(f1));
 	        //BufferedReader in_image2 = new BufferedReader(new FileReader(f2));
 		/* table_image is used to index a given ppn in a certain memory */
 		/* the ppn is the key. the index of this ppn is the value */
 		/* this is important so we can check the new value of this page */
 	        final HashMap<Integer, Integer> table_image1 = new HashMap<Integer, Integer>();
 		//final HashMap<Integer, Integer> table_image2 = new HashMap<Integer, Integer>();
-    		String s1;
+    		//String s1;
     		//String s2;
-    		int index1 = 0; 
+    		//int index1 = 0; 
     		//int index2 = 0;
-    		while((s1 = in_image1.readLine())!=null){
-      			table_image1.put(Integer.parseInt(s1), Integer.parseInt(s1));
-      			index1++;
-    		}
+    		//while((s1 = in_image1.readLine())!=null){
+      		//	table_image1.put(Integer.parseInt(s1), Integer.parseInt(s1));
+      		//	index1++;
+    		//}
 		/*
     		while((s2 = in_image2.readLine())!=null){
       			table_image2.put(Integer.parseInt(s2), index2);
       			index2++;
     		}*/
-    		in_image1.close();
+    		//in_image1.close();
     		//in_image2.close();
 		//end of indexing table to get index from physical page number
 		//read sample i only if sample i+1 exist
