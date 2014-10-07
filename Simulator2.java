@@ -277,11 +277,13 @@ public class Simulator2{
 			//mm_differencecacheFA.addpageList(pageList7, isZero);
 			mm_oraclecache_remerge.addpageList(pageList5, isZero);
 			page_index++;
-			merged_pages++;
+			if(!isZero)merged_pages++;
 		}
+		System.out.println("total pages "+total_number_of_pages);
 		in.close();
 		mm.merged_used_space = merged_pages*4096;//space occupied by all page groups in bytes (only non zero pages)
 		mm.unmerged_used_space = (mm.total_size/4096 - zeroPageCount - total_number_of_pages)*4096;//Space occupied by all the pages that are not considered for sharing
+		System.out.println("unmerge space is "+mm.unmerged_used_space);
 		/* Doing the same thing for oracle caches */
 		//mm_differencecache1way.merged_used_space = merged_pages*4096;//space occupied by all page groups in bytes
 		//mm_differencecache1way.unmerged_used_space = (mm.total_size/4096 - total_number_of_pages)*4096;
@@ -460,7 +462,7 @@ public class Simulator2{
 		out.write("Unmerge count "+mm.unmerge_count+"\n");
 		out.write("zeropage unmerge count "+mm.zeroPage_unmerge_count+"\n");
 		out.write("Memory Occupied Space without pagesharing "+(mm.total_size/4096 - mm.zeroPageCount+mm.zeroPage_unmerge_count)*4096+"\n");
-		out.write("Memory Occupied Space After pageSharing "+(mm.unmerged_used_space+mm.merged_used_space+mm.unmerge_count*4096)+"\n");
+		out.write("Memory Occupied Space After pageSharing "+(mm.unmerged_used_space+mm.merged_used_space)+"\n");
 		out.close();
 
 	}
