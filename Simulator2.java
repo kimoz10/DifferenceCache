@@ -265,7 +265,7 @@ public class Simulator2{
                                 //pageList6.add(pg6);
 				//Page pg7 = new Page(ppn, mem_inst, page_index, PageState.MERGED, i);
                                 //pageList7.add(pg7);
-				total_number_of_pages++;//This is the memory usage without pagesharing
+				if(!isZero) total_number_of_pages++;//This is the memory usage without pagesharing
 
 			}
 		        mm.addpageList(pageList1, isZero);//This will add the page list along with the common
