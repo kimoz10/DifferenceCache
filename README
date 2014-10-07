@@ -1,0 +1,14 @@
+guide here
+
+TRACING
+
+1- Go over the reference table page by page
+2- Read the contents of the new page and compare it to the reference content
+3- if NO CHANGE: do nothing
+   if there is CHANGE in a block:
+	if the page can still put more blocks in the diff cache, create a cacheentry object and put it in cache
+		change the state of the page to semi-merged
+	if the page can no longer put more entries in the cache
+		check if remerge is possible (yes: you can put more blocks in th cache)
+		no: mark the page as unmerged. remove its contents from the cache. remove it from the mm instance
+		increase the occupied size of the machine memory
