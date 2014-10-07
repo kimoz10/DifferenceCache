@@ -32,6 +32,7 @@ public class OracleCache extends Cache{
 		if(mm.isZeroPage(p.content_idx)){
 			p.state=PageState.UNMERGED;
 			unmerge_count++;
+			mm.unmerged_used_space+=4096;
 			return 0;
 		}
 		if(cache_table.containsKey(p)){//The cache has entries for page p. check to see if it has this same block number

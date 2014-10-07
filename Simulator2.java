@@ -187,9 +187,11 @@ class CacheThread extends Thread{
 }
 
 public class Simulator2{
+	
+	public static String data_path;
 
 	public static byte[] getPage(int index, int img_no, String fname) throws IOException{
-    		File img = new File("/home/karim/qemu/image3/data/"+fname);
+    		File img = new File(data_path + fname);
     		FileInputStream fis = new FileInputStream(img);
     		byte[] buffer = new byte[4096];
 		fis.skip(index*4096);
@@ -198,6 +200,7 @@ public class Simulator2{
 		return buffer;
   	}
 	//ToDo
+	/*
 	private static void removeSample(int img_no, String fname) throws IOException{
 		//if(img_no < 10) return;
 		//for(int i = 0;i<10;i++)if(fname.equals("sample"+i+".txt"))return;
@@ -205,11 +208,13 @@ public class Simulator2{
 		img.delete();
                 
         }
-
+	*/
 	public static void main(String[] args) throws IOException{
 		/* INITIALIZATION */
 		/* Construct the MachineMemory Object from output.txt and the memory dumps */
-		File f = new File("/home/karim/qemu/image3/data/output.txt");
+		data_path = args[0];
+		System.out.println("Data Path is " + data_path);
+		File f = new File(data_path + "/output.txt");
 		BufferedReader in = new BufferedReader(new FileReader(f));
 		String s;
 		int page_index = 0;
@@ -359,7 +364,7 @@ public class Simulator2{
 				}
 			}
 			*/
-			File currentFile1 = new File("/home/karim/qemu/image3/data/sample"+(i)+".txt");
+			File currentFile1 = new File(data_path + "/sample"+(i)+".txt");
 			//File currentFile2 = new File("../image2/samples/sample"+i+".txt");
 			FileInputStream fis1 = new FileInputStream(currentFile1);
 			//FileInputStream fis2 = new FileInputStream(currentFile2);
@@ -522,7 +527,7 @@ public class Simulator2{
 		out.write("Unmerge count: "+c.unmerge_count+"\n");
 		out.write("Full Set Unmerge: "+c.full_set_unmerge_count+"\n");
 		out.write("Threshold set unmerge: "+c.threshold_unmerge_count+"\n");
-		out.write("Occupied Space "+(mm.merged_used_space + mm.unmerged_used_space + c.occupied_block_count*64 + c.unmerge_count*4096)+"\n");
+		out.write("Occupied Space "+(mm.merged_used_space + mm.unmerged_used_space + c.occupied_block_count*64)+"\n");
 		for(int i = 0; i<5; i++) out.write(x[i]+" ");
 		out.write("\n");
 		for(int i = 0; i<5; i++) out.write(y[i]+" ");
