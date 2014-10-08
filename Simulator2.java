@@ -523,7 +523,8 @@ public class Simulator2{
 		//out.write("REMERGE COUNT: "+c.remerge_count+"\n");
 		//out.write("******* MEMORY *******\n");
 		MachineMemory mm = c.mm;
-		out.write("Memory Empty Space: "+ (mm.total_size - (mm.merged_used_space + mm.unmerged_used_space))+"\n");
+		out.write("Memory Merged Space: "+ mm.merged_used_space+ "\n");
+		out.write("Memory UNMerged Space: "+ mm.unmerged_used_space+ "\n");
 		out.write("Unmerge count: "+c.unmerge_count+"\n");
 		out.write("Full Set Unmerge: "+c.full_set_unmerge_count+"\n");
 		out.write("Threshold set unmerge: "+c.threshold_unmerge_count+"\n");

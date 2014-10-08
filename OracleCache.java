@@ -65,7 +65,7 @@ public class OracleCache extends Cache{
 						occupied_block_count -= size;
 						
 					}
-					mm.unmerged_used_space += 4096*total_number_merged_pages;
+					mm.unmerged_used_space += 4096*(total_number_merged_pages);
                                         mm.merged_used_space -= 4096;
 				}
 				else{
@@ -87,7 +87,7 @@ public class OracleCache extends Cache{
 			//}
 		}
 		//if(isRemerge) checkRenegade(ce);
-		if(isRemerge && p.state!=PageState.UNMERGED) Remerge(ce);
+		//if(isRemerge && p.state!=PageState.UNMERGED) Remerge(ce);
 		//TO DO return value
 		return 0;
 	}

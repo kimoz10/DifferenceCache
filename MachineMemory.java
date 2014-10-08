@@ -21,7 +21,7 @@ public class MachineMemory{
 	}
 	public void addpageList(LinkedList<Page> pl, boolean isZeroPage) throws IOException{
 		int mem = pl.get(0).memory_inst;
-		File f = new File("/home/karim/qemu/image3/data/sample0.txt");
+		File f = new File("./data/sample0.txt");
 		int ppn = pl.get(0).ppn;
 		FileInputStream fis = new FileInputStream(f);
 		byte[] content = new byte[4096];
